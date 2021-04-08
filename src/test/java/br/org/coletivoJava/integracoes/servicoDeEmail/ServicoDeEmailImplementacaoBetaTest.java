@@ -25,6 +25,10 @@ import testesFW.TesteJunit;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class ServicoDeEmailImplementacaoBetaTest extends TesteJunit {
 
+    private static final String NOME_CLIENTE_TESTE = "Minasdrill";
+    private static final String DOMINIO_CLIENTE_TESTE = "minasdrill.com.br";
+    private static final String CONTA_CLIENTE_TESTE = "minasdrill@minasdrill.com.br";
+
     @Override
     protected void configAmbienteDesevolvimento() {
         SBCore.configurar(new ConfigCoreMavMailTestesRegraNegocio(), SBCore.ESTADO_APP.DESENVOLVIMENTO);
@@ -38,10 +42,10 @@ public class ServicoDeEmailImplementacaoBetaTest extends TesteJunit {
      * Test of clienteNovo method, of class ServicoDeEmailImplementacaoBeta.
      */
     @Test
-    public void _3testClienteNovo() {
+    public void _30testClienteNovo() {
         ItfInfraServicoDeEmail servicoTEste = new ServicoDeEmailImplementacaoBeta();
-        String identificador = "apenasteste.com.br";
-        String nome = "Apenenas Teste";
+        String identificador = DOMINIO_CLIENTE_TESTE;
+        String nome = NOME_CLIENTE_TESTE;
         ClienteMav cliente = new ClienteMav();
         cliente.setIdentificadorAPI(identificador);
         cliente.setNome(nome);
@@ -65,7 +69,7 @@ public class ServicoDeEmailImplementacaoBetaTest extends TesteJunit {
     @Test
     public void _32testGetCliente() {
         ItfInfraServicoDeEmail servicoTEste = new ServicoDeEmailImplementacaoBeta();
-        String identificador = "pimentahomeservice.com.br";
+        String identificador = DOMINIO_CLIENTE_TESTE;
         ItfPessoa pessoa = servicoTEste.getCliente(identificador);
         assertNotNull("erro obtendo pessoas, retornounulo", pessoa);
         assertTrue("Retornou a pessoa Errada", ((ClienteMav) pessoa).getIdentificadorAPI().equals(identificador) || ((ClienteMav) pessoa).getNome().equals(identificador));
@@ -76,8 +80,8 @@ public class ServicoDeEmailImplementacaoBetaTest extends TesteJunit {
     public void _4testDominioNovo() {
 
         ItfInfraServicoDeEmail servicoTEste = new ServicoDeEmailImplementacaoBeta();
-        String identificador = "apenasteste.com.br";
-        String nome = "Apenenas Teste";
+        String identificador = DOMINIO_CLIENTE_TESTE;
+        String nome = NOME_CLIENTE_TESTE;
         ClienteMav cliente = new ClienteMav();
         cliente.setIdentificadorAPI(identificador);
         cliente.setNome(nome);
@@ -95,7 +99,7 @@ public class ServicoDeEmailImplementacaoBetaTest extends TesteJunit {
 
         ServicoDeEmailImplementacaoBeta servicoTEste = new ServicoDeEmailImplementacaoBeta();
 
-        ItfResposta resposta = servicoTEste.criarCaixaDeEntrata("teste@apenasteste.com.br");
+        ItfResposta resposta = servicoTEste.criarCaixaDeEntrata(CONTA_CLIENTE_TESTE, "senha@teste");
         assertNotNull("erro obtendo pessoas, retornounulo", resposta);
         assertTrue("Falha criando caixa de entrada", resposta.isSucesso());
     }
@@ -107,8 +111,8 @@ public class ServicoDeEmailImplementacaoBetaTest extends TesteJunit {
     public void _6testClienteRemover() {
 
         ItfInfraServicoDeEmail servicoTEste = new ServicoDeEmailImplementacaoBeta();
-        String identificador = "apenasteste.com.br";
-        String nome = "Apenenas Teste";
+        String identificador = DOMINIO_CLIENTE_TESTE;
+        String nome = NOME_CLIENTE_TESTE;
         ClienteMav cliente = new ClienteMav();
         cliente.setIdentificadorAPI(identificador);
         cliente.setNome(nome);

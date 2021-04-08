@@ -36,7 +36,7 @@ public enum FabApiRestMavMailCaixaPostal implements ItfFabricaIntegracaoRest {
     @InfoConsumoRestService(getPachServico = "/_REST/resellersAPI/listAccountInfos",
             tipoConexao = FabTipoConexaoRest.POST,
             tipoInformacaoEnviada = FabTipoArquivoImportacao.JSON,
-            parametrosPost = {"dominio"},
+            parametrosPost = {"email", "senha"},
             urlDocumentacao = "https://documenter.getpostman.com/view/9632769/SWLiamS3#74ef2799-5a93-4fb1-933b-ad5aaa6adf03"
     )
     CAIXA_POSTAL_RP_EXISTE;

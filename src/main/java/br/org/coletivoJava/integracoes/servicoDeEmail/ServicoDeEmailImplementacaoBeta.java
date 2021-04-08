@@ -112,7 +112,7 @@ public class ServicoDeEmailImplementacaoBeta implements ItfInfraServicoDeEmail {
     public ItfResposta clienteNovo(ItfPessoa pPessoaFisicoJuridica) {
         ClienteMav pcliente = (ClienteMav) pPessoaFisicoJuridica;
         ItfResposta resp = FabApiRestMavMailCliente.CLIENTE_CTR_NOVO.getAcao(pcliente.getIdentificadorAPI(), pcliente.getNome()).getResposta();
-        String stringRetorno = resp.getRetorno().toString();
+        String stringRetorno = (String) resp.getRetorno();
         return resp;
     }
 
@@ -183,6 +183,9 @@ public class ServicoDeEmailImplementacaoBeta implements ItfInfraServicoDeEmail {
     public ItfResposta dominioNovo(ItfInfraDominio pDominio) {
         DominioMav dominioMav = (DominioMav) pDominio;
         ClienteMav cliente = (ClienteMav) pDominio.getPessoaResponsavel();
+        if (dominioMav.getQuantidadeDeCaixas() < 1) {
+            throw new UnsupportedOperationException("Para criar um domínio é nessessário ao menos uma caixa de e-mail");
+        }
         ItfResposta resp = FabApiRestMavMailDominio.DOMINIO_CTR_CRIAR.getAcao(cliente.getIdentificadorAPI(), dominioMav.getEndereco(), dominioMav.getQuantidadeDeCaixas()).getResposta();
         String stringRetorno = resp.getRetorno().toString();
         boolean sucesso = resp.isSucesso();
@@ -197,9 +200,9 @@ public class ServicoDeEmailImplementacaoBeta implements ItfInfraServicoDeEmail {
         return resp;
     }
 
-    public ItfResposta criarCaixaDeEntrata(String pCaixaDeEntrada) {
+    public ItfResposta criarCaixaDeEntrata(String pCaixaDeEntrada, String pSenha) {
         String dominio = pCaixaDeEntrada.substring(pCaixaDeEntrada.indexOf("@") + 1);
-        ItfResposta resp = FabApiRestMavMailCaixaPostal.CAIXA_POSTAL_CTR_NOVO.getAcao(dominio, pCaixaDeEntrada).getResposta();
+        ItfResposta resp = FabApiRestMavMailCaixaPostal.CAIXA_POSTAL_CTR_NOVO.getAcao(dominio, pCaixaDeEntrada, pSenha).getResposta();
         String stringRetorno = resp.getRetorno().toString();
         return resp;
     }

@@ -21,7 +21,7 @@ public class IntegracaoRestMavmailClienteRepListar
 
     @Override
     public String gerarCorpoRequisicao() {
-        return "token=" + GestaoTokenRestMavmail.configuraca.getPropriedade(FabConfigMavMail.CAHVE_DE_ACESSO);
+        return "token=" + GestaoTokenRestMavmail.configuraca.getPropriedade(FabConfigMavMail.CHAVE_DE_ACESSO);
     }
 
 }

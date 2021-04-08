@@ -27,18 +27,18 @@ public class GestaoTokenRestMavmail extends GestaoTokenEstatico {
 
     @Override
     public ItfTokenDeAcessoExterno gerarNovoToken() {
-        return new TokenDeAcessoExternoSimples(configuraca.getPropriedade(FabConfigMavMail.CAHVE_DE_ACESSO));
+        return new TokenDeAcessoExternoSimples(configuraca.getPropriedade(FabConfigMavMail.CHAVE_DE_ACESSO));
     }
 
     @Override
     public boolean validarToken() {
-        return !configuraca.getPropriedade(FabConfigMavMail.CAHVE_DE_ACESSO).equals(FabConfigMavMail.CAHVE_DE_ACESSO.getValorPadrao());
+        return !configuraca.getPropriedade(FabConfigMavMail.CHAVE_DE_ACESSO).equals(FabConfigMavMail.CHAVE_DE_ACESSO.getValorPadrao());
 
     }
 
     @Override
     public ItfTokenDeAcessoExterno loadTokenArmazenado() {
-        return new TokenDeAcessoExternoSimples(configuraca.getPropriedade(FabConfigMavMail.CAHVE_DE_ACESSO));
+        return new TokenDeAcessoExternoSimples(configuraca.getPropriedade(FabConfigMavMail.CHAVE_DE_ACESSO));
     }
 
 }

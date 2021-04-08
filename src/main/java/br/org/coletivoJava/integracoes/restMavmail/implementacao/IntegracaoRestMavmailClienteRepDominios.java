@@ -23,7 +23,7 @@ public class IntegracaoRestMavmailClienteRepDominios
     @Override
     public String gerarCorpoRequisicao() {
         StringBuilder corpoSolicitaccao = new StringBuilder();
-        corpoSolicitaccao.append("token=").append(GestaoTokenRestMavmail.configuraca.getPropriedade(FabConfigMavMail.CAHVE_DE_ACESSO));
+        corpoSolicitaccao.append("token=").append(GestaoTokenRestMavmail.configuraca.getPropriedade(FabConfigMavMail.CHAVE_DE_ACESSO));
         corpoSolicitaccao.append("&APIid=").append(getParametros()[0]);
         return corpoSolicitaccao.toString();
     }
