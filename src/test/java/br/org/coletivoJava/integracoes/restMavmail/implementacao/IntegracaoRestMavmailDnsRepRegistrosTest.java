@@ -1,39 +1,35 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/UnitTests/JUnit4TestClass.java to edit this template
  */
 package br.org.coletivoJava.integracoes.restMavmail.implementacao;
 
 import br.org.coletivoJava.integracoes.restMavmail.api.cliente.FabApiRestMavMailCliente;
+import br.org.coletivoJava.integracoes.restMavmail.api.dns.FabApiRestMavDNS;
 import com.super_bits.modulosSB.SBCore.ConfigGeral.SBCore;
 import com.super_bits.modulosSB.SBCore.integracao.libRestClient.WS.conexaoWebServiceClient.ItfRespostaWebServiceSimples;
 import com.super_bits.modulosSB.SBCore.integracao.libRestClient.api.transmissao_recepcao_rest_client.ItfAcaoApiRest;
 import com.super_bits.modulosSB.SBCore.integracao.rocketChat.implementacaoRCRest.ConfigCoreMavMailTestesRegraNegocio;
 import org.json.simple.JSONObject;
+import static org.junit.Assert.assertTrue;
 import org.junit.Test;
-import static org.junit.Assert.*;
 import testesFW.TesteJunit;
 
 /**
  *
- * @author sfurbino
+ * @author salvio
  */
-public class IntegracaoRestMavmailClienteListarTest  extends TesteJunit{
-
-    public IntegracaoRestMavmailClienteListarTest() {
+public class IntegracaoRestMavmailDnsRepRegistrosTest  extends TesteJunit{
+    
+    public IntegracaoRestMavmailDnsRepRegistrosTest() {
     }
-
-    /**
-     * Test of gerarCorpoRequisicao method, of class
-     * IntegracaoRestMavmailClienteListar.
-     */
+    
+   
     @Test
-    public void testGerarCorpoRequisicao() {
-
-       
-        ItfAcaoApiRest listaDeClientes = (IntegracaoRestMavmailClienteRepListar) FabApiRestMavMailCliente
-                .CLIENTE_REP_LISTAR.getAcao();
+    public void testSomeMethod() {
+        
+         ItfAcaoApiRest listaDeClientes = (IntegracaoRestMavmailDnsRepRegistros) FabApiRestMavDNS
+                .DNS_REP_REGISTROS.getAcao("casanovadigital.com.br");
         ItfRespostaWebServiceSimples resposta = listaDeClientes.getResposta();
         if (resposta.isSucesso()) {
             System.out.println("Fuciona");
@@ -48,10 +44,8 @@ public class IntegracaoRestMavmailClienteListarTest  extends TesteJunit{
             
         }
     }
-
     @Override
     protected void configAmbienteDesevolvimento() {
         SBCore.configurar(new ConfigCoreMavMailTestesRegraNegocio(), SBCore.ESTADO_APP.DESENVOLVIMENTO);
     }
-
 }

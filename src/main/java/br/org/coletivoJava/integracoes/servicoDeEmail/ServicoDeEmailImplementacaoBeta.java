@@ -7,9 +7,12 @@ package br.org.coletivoJava.integracoes.servicoDeEmail;
 
 import br.org.coletivoJava.integracoes.restMavmail.api.cliente.FabApiRestMavMailCliente;
 import br.org.coletivoJava.integracoes.restMavmail.api.caixapostal.FabApiRestMavMailCaixaPostal;
+import br.org.coletivoJava.integracoes.restMavmail.api.dns.FabApiRestMavDNS;
 import br.org.coletivoJava.integracoes.restMavmail.api.dominio.FabApiRestMavMailDominio;
 import br.org.coletivoJava.integracoes.restMavmail.api.pojo.ClienteMav;
 import br.org.coletivoJava.integracoes.restMavmail.api.pojo.DominioMav;
+import br.org.coletivoJava.integracoes.restMavmail.api.pojo.RegistroDNSMav;
+import com.super_bits.modulosSB.SBCore.ConfigGeral.SBCore;
 import com.super_bits.modulosSB.SBCore.modulos.Controller.Interfaces.ItfResposta;
 import com.super_bits.modulosSB.SBCore.modulos.objetos.registro.Interfaces.financeiro.ItfPessoa;
 import com.super_bits.modulosSB.SBCore.modulos.objetos.registro.Interfaces.financeiro.ItfPessoaFisicoJuridico;
@@ -23,6 +26,7 @@ import java.util.logging.Logger;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import org.coletivojava.fw.api.tratamentoErros.FabErro;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -44,6 +48,54 @@ import org.xml.sax.SAXException;
  * @author sfurbino
  */
 public class ServicoDeEmailImplementacaoBeta implements ItfInfraServicoDeEmail {
+    
+     @Override
+    public List<RegistroDNSMav> getRegistrosDNS(String pDominio) {
+         ItfResposta resp = FabApiRestMavDNS.DNS_REP_REGISTROS.getAcao(pDominio).getResposta();
+         if (!resp.isSucesso()){
+             return null;
+         }
+         List<RegistroDNSMav> novalista=new ArrayList<>();
+          String retorno = resp.getRetorno().toString();
+          InputSource is = new InputSource(new StringReader(retorno));
+          try {
+            DocumentBuilder db = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+            Document xmlsDoc = db.parse(is);
+            xmlsDoc.normalize();
+            Object registrosXML = xmlsDoc.getElementsByTagName("registries");
+            NodeList nList = (NodeList) registrosXML;
+             for (int temp = 0; temp < nList.getLength(); temp++) {
+                Node node = nList.item(temp);
+                Element elemento = (Element) node;
+                NodeList registroXMHTML = elemento.getElementsByTagName("registry");
+                for (int tempClient = 0; tempClient < registroXMHTML.getLength(); tempClient++) {
+                    Node cliente = registroXMHTML.item(tempClient);
+                    if (cliente == null) {
+
+                        System.out.println("putamerda");
+                    } else {
+
+                        Element registroDNSElementoXml = (Element) cliente;
+                        String nome = registroDNSElementoXml.getElementsByTagName("name").item(0).getTextContent();
+                        String tipo = registroDNSElementoXml.getElementsByTagName("type").item(0).getTextContent();
+                        String conteudo = registroDNSElementoXml.getElementsByTagName("content").item(0).getTextContent();
+                        RegistroDNSMav registroDNS = new RegistroDNSMav();
+                        registroDNS.setNome(nome);
+                        registroDNS.setTipo(tipo);
+                        registroDNS.setValor(conteudo);
+                        novalista.add(registroDNS);
+                    }
+                }
+
+            }
+             return novalista;
+          }catch(Throwable t)
+          {
+              SBCore.RelatarErro(FabErro.SOLICITAR_REPARO, "Falha interpretando registros de dns"+t.getMessage(), t);
+              return null;
+          }
+          
+    }
 
     @Override
     public List<ItfPessoa> getClientesLista() {
@@ -206,5 +258,7 @@ public class ServicoDeEmailImplementacaoBeta implements ItfInfraServicoDeEmail {
         String stringRetorno = resp.getRetorno().toString();
         return resp;
     }
+
+   
 
 }

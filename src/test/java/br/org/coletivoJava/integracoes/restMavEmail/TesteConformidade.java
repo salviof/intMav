@@ -7,6 +7,7 @@ package br.org.coletivoJava.integracoes.restMavEmail;
 
 import br.org.coletivoJava.integracoes.restMavmail.api.cliente.FabApiRestMavMailCliente;
 import br.org.coletivoJava.integracoes.restMavmail.api.caixapostal.FabApiRestMavMailCaixaPostal;
+import br.org.coletivoJava.integracoes.restMavmail.api.dns.FabApiRestMavDNS;
 import br.org.coletivoJava.integracoes.restMavmail.api.dominio.FabApiRestMavMailDominio;
 
 import com.super_bits.modulosSB.SBCore.ConfigGeral.SBCore;
@@ -25,9 +26,10 @@ public class TesteConformidade extends TestesApiRest {
     public void testes() {
         SBCore.configurar(new ConfigCoreMavMailTestesRegraNegocio(), SBCore.ESTADO_APP.DESENVOLVIMENTO);
 
-        gerarCodigos(FabApiRestMavMailCliente.class);
-        gerarCodigos(FabApiRestMavMailDominio.class);
-        gerarCodigos(FabApiRestMavMailCaixaPostal.class);
+        gerarCodigosChamadasEndpoint(FabApiRestMavMailCliente.class);
+        gerarCodigosChamadasEndpoint(FabApiRestMavMailDominio.class);
+        gerarCodigosChamadasEndpoint(FabApiRestMavMailCaixaPostal.class);
+        gerarCodigosChamadasEndpoint(FabApiRestMavDNS.class);
 //        RespostaWebServiceSimples resposta = FabApiRestRokcetChatV1Users.DIRECT_MENSAGENS_CONTADORES.getAcao().getResposta();
         //      System.out.println(resposta);
         //     System.out.println(resposta.getRespostaTexto());

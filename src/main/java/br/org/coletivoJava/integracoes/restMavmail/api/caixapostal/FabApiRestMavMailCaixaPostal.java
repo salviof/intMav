@@ -5,8 +5,6 @@
  */
 package br.org.coletivoJava.integracoes.restMavmail.api.caixapostal;
 
-import br.org.coletivoJava.integracoes.restMavmail.api.dominio.*;
-import br.org.coletivoJava.integracoes.restMavmail.api.cliente.*;
 import com.super_bits.modulosSB.SBCore.integracao.libRestClient.WS.ItfFabricaIntegracaoRest;
 import com.super_bits.modulosSB.SBCore.integracao.libRestClient.WS.conexaoWebServiceClient.FabTipoConexaoRest;
 import br.org.coletivoJava.integracoes.restMavmail.api.FabConfigMavMail;

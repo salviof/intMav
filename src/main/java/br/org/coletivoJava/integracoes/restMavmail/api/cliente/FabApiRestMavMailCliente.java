@@ -17,7 +17,7 @@ import com.super_bits.modulosSB.SBCore.modulos.ManipulaArquivo.importacao.FabTip
  *
  * @author sfurbino
  */
-@InfoConfigRestClientIntegracao(enderecosDocumentacao = "ttps://documenter.getpostman.com/view/9632769/SWLiamS3",
+@InfoConfigRestClientIntegracao(enderecosDocumentacao = "https://documenter.getpostman.com/view/9632769/SWLiamS3",
         tipoAutenticacao = FabTipoAutenticacaoRest.USUARIO_SENHA_SIMPLES,
         nomeIntegracao = FabConfigMavMail.NOME_APLICACAO,
         configuracao = FabConfigMavMail.class
