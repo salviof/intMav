@@ -19,7 +19,7 @@ import testesFW.TesteJunit;
  *
  * @author sfurbino
  */
-public class IntegracaoRestMavmailClienteListarTest  extends TesteJunit{
+public class IntegracaoRestMavmailClienteListarTest extends TesteJunit {
 
     public IntegracaoRestMavmailClienteListarTest() {
     }
@@ -31,22 +31,16 @@ public class IntegracaoRestMavmailClienteListarTest  extends TesteJunit{
     @Test
     public void testGerarCorpoRequisicao() {
 
-       
-        ItfAcaoApiRest listaDeClientes = (IntegracaoRestMavmailClienteRepListar) FabApiRestMavMailCliente
-                .CLIENTE_REP_LISTAR.getAcao();
+        ItfAcaoApiRest listaDeClientes = (IntegracaoRestMavmailClienteRepListar) FabApiRestMavMailCliente.CLIENTE_REP_LISTAR.getAcao();
         ItfRespostaWebServiceSimples resposta = listaDeClientes.getResposta();
         if (resposta.isSucesso()) {
             System.out.println("Fuciona");
-            JSONObject json = resposta.getRespostaComoObjetoJson();
-        } else {
-            String respostaString = resposta.getRespostaTexto();
-            String respostaErro = resposta.getRespostaTexto();
+            String respostastr = resposta.getRetorno().toString();
+            System.out.println(respostastr);
         }
-        try{
+
         assertTrue("A lista de clientes não pode ser obtida", resposta.isSucesso());
-        }catch(Throwable t){
-            
-        }
+
     }
 
     @Override

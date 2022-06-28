@@ -26,6 +26,7 @@ public enum FabApiRestMavMailCaixaPostal implements ItfFabricaIntegracaoRest {
 
     @InfoConsumoRestService(getPachServico = "/_REST/resellersAPI/createAccount",
             tipoConexao = FabTipoConexaoRest.POST,
+            aceitarCertificadoDeHostNaoConfiavel = true,
             tipoInformacaoEnviada = FabTipoArquivoImportacao.JSON,
             parametrosPost = {"APIiddoCliente", "dominio", "qtd_contas"},
             urlDocumentacao = "https://documenter.getpostman.com/view/9632769/SWLiamS3#74ef2799-5a93-4fb1-933b-ad5aaa6adf03"
@@ -33,6 +34,7 @@ public enum FabApiRestMavMailCaixaPostal implements ItfFabricaIntegracaoRest {
     CAIXA_POSTAL_CTR_NOVO,
     @InfoConsumoRestService(getPachServico = "/_REST/resellersAPI/listAccountInfos",
             tipoConexao = FabTipoConexaoRest.POST,
+            aceitarCertificadoDeHostNaoConfiavel = true,
             tipoInformacaoEnviada = FabTipoArquivoImportacao.JSON,
             parametrosPost = {"email", "senha"},
             urlDocumentacao = "https://documenter.getpostman.com/view/9632769/SWLiamS3#74ef2799-5a93-4fb1-933b-ad5aaa6adf03"

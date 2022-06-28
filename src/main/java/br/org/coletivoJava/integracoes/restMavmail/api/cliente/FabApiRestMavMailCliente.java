@@ -26,11 +26,13 @@ public enum FabApiRestMavMailCliente implements ItfFabricaIntegracaoRest {
 
     @InfoConsumoRestService(getPachServico = "/_REST/resellersAPI/listResselerClients",
             tipoConexao = FabTipoConexaoRest.POST,
+            aceitarCertificadoDeHostNaoConfiavel = true,
             urlDocumentacao = "https://documenter.getpostman.com/view/9632769/SWLiamS3#9006e582-711f-4314-bedc-613301419937")
     CLIENTE_REP_LISTAR,
     @InfoConsumoRestService(getPachServico = "/_REST/resellersAPI/createClient",
             tipoConexao = FabTipoConexaoRest.POST,
             tipoInformacaoEnviada = FabTipoArquivoImportacao.JSON,
+            aceitarCertificadoDeHostNaoConfiavel = true,
             parametrosPost = {"APIid", "clientName"},
             urlDocumentacao = "https://documenter.getpostman.com/view/9632769/SWLiamS3#b4b49c87-4cec-483b-9f36-afd2b078f806"
     )
@@ -38,6 +40,7 @@ public enum FabApiRestMavMailCliente implements ItfFabricaIntegracaoRest {
     @InfoConsumoRestService(getPachServico = "/_REST/resellersAPI/deleteClient",
             tipoConexao = FabTipoConexaoRest.POST,
             tipoInformacaoEnviada = FabTipoArquivoImportacao.JSON,
+            aceitarCertificadoDeHostNaoConfiavel = true,
             parametrosPost = {"APIid", "clientName"},
             urlDocumentacao = "https://documenter.getpostman.com/view/9632769/SWLiamS3#b4b49c87-4cec-483b-9f36-afd2b078f806"
     )
@@ -48,10 +51,12 @@ public enum FabApiRestMavMailCliente implements ItfFabricaIntegracaoRest {
      */
     @InfoConsumoRestService(getPachServico = "/_REST/resellersAPI/listResselerClients",
             tipoConexao = FabTipoConexaoRest.POST,
+            aceitarCertificadoDeHostNaoConfiavel = true,
             urlDocumentacao = "ttps://documenter.getpostman.com/view/9632769/SWLiamS3#9006e582-711f-4314-bedc-613301419937")
     CLIENTE_REP_EXISTE,
     @InfoConsumoRestService(getPachServico = "/_REST/resellersAPI/listClientDomains",
             tipoConexao = FabTipoConexaoRest.POST,
+            aceitarCertificadoDeHostNaoConfiavel = true,
             urlDocumentacao = "https://documenter.getpostman.com/view/9632769/SWLiamS3#9006e582-711f-4314-bedc-613301419937")
     CLIENTE_REP_DOMINIOS;
 
