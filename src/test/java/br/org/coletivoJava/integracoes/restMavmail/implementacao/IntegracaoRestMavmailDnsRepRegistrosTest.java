@@ -32,7 +32,8 @@ public class IntegracaoRestMavmailDnsRepRegistrosTest extends TesteJunit {
         ItfRespostaWebServiceSimples resposta = listaDeClientes.getResposta();
         if (resposta.isSucesso()) {
             System.out.println("Fuciona");
-            JsonObject json = resposta.getRespostaComoObjetoJson();
+            System.out.println(resposta.getRespostaTexto());
+            SBCore.getServicoMensagens().enviarMsgAlertaAoDesenvolvedor(resposta.getRespostaTexto());
         } else {
             String respostaString = resposta.getRespostaTexto();
             String respostaErro = resposta.getRespostaTexto();
