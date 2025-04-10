@@ -160,7 +160,7 @@ public class ClienteMav implements ItfPessoa {
     }
 
     @Override
-    public int getId() {
+    public Long getId() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -195,7 +195,7 @@ public class ClienteMav implements ItfPessoa {
     }
 
     @Override
-    public void setId(int pID) {
+    public void setId(Long pID) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
